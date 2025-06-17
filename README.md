@@ -12,3 +12,15 @@ This project utilizes tools and technologies including **Django**, **PostgreSQL*
 - **Database Administrator (DBA)**: Designs and optimizes the database structure, manages indexing, and ensures data integrity.  
 - **DevOps Engineer**: Oversees deployment pipelines, monitors system performance, and manages backend scalability using tools like Docker and Redis.  
 - **QA Engineer**: Develops and runs test suites to ensure backend functionalities meet quality standards and are bug-free.
+
+
+## Technology Stack
+
+- **Django**: A high-level Python web framework used for building the RESTful API.
+- **Django REST Framework**: Provides tools for creating and managing RESTful APIs.
+- **PostgreSQL**: A powerful relational database used for data storage.
+- **GraphQL**: Allows for flexible and efficient querying of data.
+- **Celery**: For handling asynchronous tasks such as sending notifications or processing payments.
+- **Redis**: Used for caching and session management.
+- **Docker**: Containerization tool for consistent development and deployment environments.
+- **CI/CD Pipelines**: Automated pipelines for testing and deploying code changes.
