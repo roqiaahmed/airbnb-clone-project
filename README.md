@@ -24,3 +24,41 @@ This project utilizes tools and technologies including **Django**, **PostgreSQL*
 - **Redis**: Used for caching and session management.
 - **Docker**: Containerization tool for consistent development and deployment environments.
 - **CI/CD Pipelines**: Automated pipelines for testing and deploying code changes.
+
+
+## Database Design
+
+- **Users**
+  - `name`
+  - `email`
+  - `password`
+  - Has many **properties**
+  - Can write multiple **reviews**
+  - Can make multiple **bookings**
+    
+- **Properties**
+  - `location`
+  - `description`
+  - Has many **reviews**
+  - Has many **bookings**
+  - Belongs to a **user**
+    
+- **Bookings**
+  - `price`
+  - `date`
+  - `is_paid` (boolean)
+  - Belongs to a **user**
+  - Belongs to a **property**
+  - Has one **payment**
+    
+- **Reviews**
+  - `rating`
+  - `comment`
+  - Belongs to a **user**
+  - Belongs to a **property**
+    
+- **Payments**
+  - `amount`
+  - `payment_date`
+  - Belongs to a **booking**
+  
