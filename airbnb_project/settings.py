@@ -26,14 +26,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", default="SECRET")
-
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY",
+    "django-insecure-&psk#na5l=p3q8_a+-$4w1f^lymm_rn7pwb87ymm_rn7pwb87t3lx1c@dymm_rn7pwbdymm_rn7pwb87dymm_rn7pwb87dymm_rn7pwb87dymm_rn7pwb87dymm_rn7pwb87dymm_rn7pwb8787*p4x$yymm_rn7pwb87m_rn7pwb87",
+)
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", default="False")
+DEBUG = os.environ.get("DEBUG", "") != "False"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["roqiaahmed.pythonanywhere.com", "127.0.0.1"]
+CSRF_TRUSTED_ORIGINS = ["https://roqiaahmed.pythonanywhere.com"]
 SITE_ID = 1  # allauth needs this
-
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 INSTALLED_APPS = [
     "django.contrib.admin",
