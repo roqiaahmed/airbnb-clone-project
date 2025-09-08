@@ -55,10 +55,15 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    # Swagger Documentation
+    "drf_yasg",
+    "drf_spectacular",
     # Local apps
     "users",
     "listings",
     "bookings",
+    "payments",
+    "reviews",
 ]
 
 # Use JWT (disable authtoken completely)
@@ -75,6 +80,13 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Airbnb clone",
+    "DESCRIPTION": "API documentation for  airbnb clone App",
+    "VERSION": "1.0.0",
 }
 
 MIDDLEWARE = [

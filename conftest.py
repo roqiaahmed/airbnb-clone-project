@@ -2,6 +2,9 @@ import pytest
 from rest_framework.test import APIClient
 from django.conf import settings
 from datetime import date, timedelta
+from bookings.models import Booking
+from listings.models import Listing
+from users.models import User
 
 
 @pytest.fixture
@@ -45,7 +48,6 @@ def user_payload():
 @pytest.fixture
 def listing_payload():
     return {
-        "host": settings.AUTH_USER_MODEL,
         "title": "title for listing",
         "description": "description for listing",
         "price_per_night": 0,
@@ -88,3 +90,27 @@ def create_user(django_user_model):
         return user
 
     return _make_user
+
+
+@pytest.fixture
+def booking(db):
+    user = User.objects.create_user(
+        email="guest@test.com", password="StrongPass123!", user_role="guest"
+    )
+    host = User.objects.create_user(
+        email="host@test.com", password="HostPass123!", user_role="host"
+    )
+    listing = Listing.objects.create(
+        host=host,
+        title="Test Listing",
+        description="Nice place",
+        price_per_night=100,
+        location="Cairo",
+    )
+    return Booking.objects.create(
+        user=user,
+        listing=listing,
+        start_date="2025-09-10",
+        end_date="2025-09-12",
+        total_price=200,
+    )

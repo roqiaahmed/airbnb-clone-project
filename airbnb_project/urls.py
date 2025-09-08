@@ -17,6 +17,7 @@ Including another URLconf
 
 from django.urls import path, include
 from django.contrib import admin
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -24,17 +25,20 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    # dj-rest-auth built-in login/logout
-    # path("auth/", include("dj_rest_auth.urls")),
     # registration
     path("auth/jwt/create/", TokenObtainPairView.as_view(), name="jwt_create"),
     path("auth/jwt/refresh/", TokenRefreshView.as_view(), name="jwt_refresh"),
+    # swagger
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path(
+        "api/docs/",
+        SpectacularSwaggerView.as_view(url_name="schema"),
+        name="swagger-ui",
+    ),
     # apps urls
     path("api/users/", include("users.urls")),
     path("api/listings/", include("listings.urls")),
     path("api/bookings/", include("bookings.urls")),
+    path("api/payments/", include("payments.urls")),
+    path("api/reviews/", include("reviews.urls")),
 ]
-
-# JWT endpoints (use these instead of key)
-# path("auth/registration/", include("dj_rest_auth.registration.urls")),
-# path("auth/registration/", CustomRegisterView.as_view(), name="rest_register"),  # signup
